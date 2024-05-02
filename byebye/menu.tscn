@@ -1,0 +1,51 @@
+[gd_scene load_steps=7 format=3 uid="uid://hx1nu4rxc60v"]
+
+[ext_resource type="Script" path="res://menu.gd" id="1_j8wne"]
+[ext_resource type="PackedScene" uid="uid://c5nqtb6hirm1q" path="res://background.tscn" id="3_61nla"]
+[ext_resource type="FontFile" uid="uid://bhkruofyymant" path="res://Play Pretend.otf" id="3_fl28l"]
+[ext_resource type="Script" path="res://Label.gd" id="4_dxv8w"]
+
+[sub_resource type="Theme" id="Theme_o0af3"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_wqa0r"]
+font = ExtResource("3_fl28l")
+font_size = 58
+
+[node name="menu" type="Node"]
+script = ExtResource("1_j8wne")
+
+[node name="Background" parent="." instance=ExtResource("3_61nla")]
+
+[node name="Button2" type="Button" parent="."]
+texture_filter = 2
+offset_left = 436.0
+offset_top = 442.0
+offset_right = 727.0
+offset_bottom = 553.0
+size_flags_horizontal = 4
+text = "Exit"
+
+[node name="Button" type="Button" parent="."]
+texture_filter = 1
+offset_left = 437.0
+offset_top = 308.0
+offset_right = 729.0
+offset_bottom = 422.0
+size_flags_horizontal = 4
+theme = SubResource("Theme_o0af3")
+text = "Play"
+
+[node name="Label" type="Label" parent="."]
+texture_filter = 1
+offset_left = 282.0
+offset_top = 120.0
+offset_right = 913.0
+offset_bottom = 297.0
+size_flags_horizontal = 4
+label_settings = SubResource("LabelSettings_wqa0r")
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("4_dxv8w")
+
+[connection signal="pressed" from="Button2" to="." method="_on_button_2_pressed"]
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

@@ -1,0 +1,44 @@
+[gd_scene load_steps=7 format=3 uid="uid://db1y4rgfr2oup"]
+
+[ext_resource type="Texture2D" uid="uid://c2i4sf0psukfr" path="res://Images/Blue_Nebula_08-1024x1024.png" id="1_jdfcj"]
+[ext_resource type="Script" path="res://main.gd" id="1_tfrhv"]
+[ext_resource type="PackedScene" uid="uid://d2iiuc3jywk6w" path="res://main_character/main_character.tscn" id="2_qfi8c"]
+[ext_resource type="Script" path="res://Score.gd" id="3_6kf4a"]
+[ext_resource type="PackedScene" uid="uid://cpcpvjfwbmlxl" path="res://asteroid/asteroid.tscn" id="4_b8cbe"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_xeyfw"]
+outline_size = 3
+shadow_size = 0
+
+[node name="Node" type="Node"]
+script = ExtResource("1_tfrhv")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+texture_filter = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_jdfcj")
+expand_mode = 1
+
+[node name="main_character" parent="." instance=ExtResource("2_qfi8c")]
+position = Vector2(582, 595)
+
+[node name="Score" type="Label" parent="."]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -36.5
+offset_right = 36.5
+offset_bottom = 31.0
+grow_horizontal = 2
+text = "Score:"
+label_settings = SubResource("LabelSettings_xeyfw")
+script = ExtResource("3_6kf4a")
+
+[node name="Node" type="Node" parent="."]
+
+[node name="Asteroid" parent="Node" instance=ExtResource("4_b8cbe")]
+position = Vector2(573, 136)

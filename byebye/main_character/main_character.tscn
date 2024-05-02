@@ -1,0 +1,77 @@
+[gd_scene load_steps=9 format=3 uid="uid://d2iiuc3jywk6w"]
+
+[ext_resource type="Script" path="res://main_character/main_character.gd" id="1_qc004"]
+[ext_resource type="Texture2D" uid="uid://c6bq1mhadvils" path="res://Images/astronautmove.png" id="2_i4bmh"]
+[ext_resource type="AudioStream" uid="uid://5g7wgaj6ni7y" path="res://taco-bell-bong-sfx_u5kuUya.mp3" id="3_igiox"]
+[ext_resource type="AudioStream" uid="uid://ba5c37o53gypv" path="res://boss-intro-02-72039.mp3" id="4_bf8m8"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lhx02"]
+size = Vector2(57.2, 84.2)
+
+[sub_resource type="Animation" id="Animation_lauht"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_t15g4"]
+resource_name = "run"
+length = 0.7
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 2, 1, 2]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_yhwf3"]
+_data = {
+"RESET": SubResource("Animation_lauht"),
+"run": SubResource("Animation_t15g4")
+}
+
+[node name="CharacterBody2D" type="CharacterBody2D"]
+script = ExtResource("1_qc004")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(0, -5.96046e-08)
+scale = Vector2(9.39586, 10.5517)
+texture = ExtResource("2_i4bmh")
+hframes = 2
+vframes = 2
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_igiox")
+
+[node name="mainsong" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_bf8m8")
+
+[node name="Area2D" type="Area2D" parent="." groups=["main_character"]]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(0.4, 0.0999996)
+shape = SubResource("RectangleShape2D_lhx02")
+debug_color = Color(0, 0.6, 0.701961, 0.419608)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_yhwf3")
+}
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]

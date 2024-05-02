@@ -1,0 +1,57 @@
+[gd_scene load_steps=5 format=3 uid="uid://bdjatwmufsyyg"]
+
+[ext_resource type="Script" path="res://menu.gd" id="1_j8wne"]
+[ext_resource type="PackedScene" uid="uid://c5nqtb6hirm1q" path="res://background.tscn" id="2_pmvkr"]
+[ext_resource type="Texture2D" uid="uid://c2i4sf0psukfr" path="res://Images/Blue_Nebula_08-1024x1024.png" id="3_wa7gq"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_57xks"]
+font_size = 56
+font_color = Color(1, 0, 0, 1)
+
+[node name="menu" type="Node"]
+script = ExtResource("1_j8wne")
+
+[node name="Node2D" type="Node2D" parent="."]
+
+[node name="Background" parent="Node2D" instance=ExtResource("2_pmvkr")]
+
+[node name="Button2" type="Button" parent="Node2D"]
+offset_left = 445.0
+offset_top = 410.0
+offset_right = 682.0
+offset_bottom = 528.0
+text = "Exit"
+
+[node name="Button" type="Button" parent="Node2D"]
+offset_left = 443.0
+offset_top = 236.0
+offset_right = 679.0
+offset_bottom = 354.0
+tooltip_text = "Get ready to dodge asteroids!
+
+"
+action_mode = 0
+text = "Play"
+
+[node name="Label" type="Label" parent="Node2D"]
+offset_left = 106.0
+offset_top = 7.0
+offset_right = 1025.0
+offset_bottom = 230.0
+text = "Astrophobia"
+label_settings = SubResource("LabelSettings_57xks")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="Node2D"]
+texture_filter = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_wa7gq")
+expand_mode = 1
+
+[connection signal="pressed" from="Node2D/Button2" to="." method="_on_button_2_pressed"]
+[connection signal="pressed" from="Node2D/Button" to="." method="_on_button_pressed"]

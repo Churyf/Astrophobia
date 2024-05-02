@@ -1,0 +1,82 @@
+[gd_scene load_steps=7 format=3 uid="uid://di15xjrquu6qd"]
+
+[ext_resource type="Texture2D" uid="uid://cbrogu3a1m32k" path="res://Images/pozadibro.png" id="1_xs3rc"]
+[ext_resource type="Script" path="res://death_screen.gd" id="2_xcwe7"]
+[ext_resource type="FontFile" uid="uid://bhkruofyymant" path="res://Play Pretend.otf" id="3_bqkwv"]
+[ext_resource type="AudioStream" uid="uid://lfal84wk7a4l" path="res://bye-bye-mewing_fMVssQz.mp3" id="3_jxlgm"]
+[ext_resource type="Texture2D" uid="uid://do2ipt1bb2ewa" path="res://Images/Zenith-Weak-jaw-1-640x790.jpg" id="5_ymvlw"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_bmn3n"]
+font = ExtResource("3_bqkwv")
+font_size = 34
+
+[node name="TextureRect" type="TextureRect"]
+texture_filter = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_xs3rc")
+expand_mode = 1
+
+[node name="death_screen" type="Node" parent="."]
+script = ExtResource("2_xcwe7")
+
+[node name="Label" type="Label" parent="death_screen"]
+texture_filter = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -335.5
+offset_top = -99.0
+offset_right = 335.5
+offset_bottom = 99.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Better luck next time!"
+label_settings = SubResource("LabelSettings_bmn3n")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Button" type="Button" parent="death_screen"]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -109.0
+offset_top = -263.0
+offset_right = 104.0
+offset_bottom = -215.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "Try again"
+
+[node name="Button2" type="Button" parent="death_screen"]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -108.0
+offset_top = -202.0
+offset_right = 105.0
+offset_bottom = -154.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "Menu"
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="death_screen"]
+stream = ExtResource("3_jxlgm")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(564, 155)
+scale = Vector2(0.471875, 0.365823)
+texture = ExtResource("5_ymvlw")
+
+[connection signal="pressed" from="death_screen/Button" to="death_screen" method="_on_button_pressed"]
+[connection signal="pressed" from="death_screen/Button2" to="death_screen" method="_on_button_2_pressed"]
